@@ -193,8 +193,20 @@
     .portfolio__slide { min-width: 100%; display: flex; justify-content: center; align-items: center; position: relative; }
     .portfolio__slide img { max-width: 100%; max-height: 480px; border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); object-fit: cover; transition: var(--transition); }
     .portfolio__slide:hover img { transform: scale(1.02); }
+    .portfolio__slide-link { display: block; position: relative; border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; }
+    .portfolio__slide-link img { display: block; }
+    .portfolio__slide-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.45); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #fff; opacity: 0; transition: opacity 0.3s ease; border-radius: var(--radius-lg); pointer-events: none; }
+    .portfolio__slide-overlay i { font-size: 1.8rem; }
+    .portfolio__slide-overlay span { font-size: 0.95rem; font-weight: 600; letter-spacing: 0.04em; }
+    .portfolio__slide-link:hover .portfolio__slide-overlay { opacity: 1; }
+    .portfolio__slide-link:hover img { transform: scale(1.03); }
+    .portfolio__slide--link { cursor: pointer; }
 
     .portfolio__controls { display: flex; justify-content: center; align-items: center; gap: 32px; margin-top: 40px; }
+    .portfolio__slide-cta { display: flex; justify-content: center; margin-top: 16px; min-height: 44px; }
+    .portfolio__cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%); color: var(--white); border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none; box-shadow: 0 6px 18px rgba(232,121,43,0.35); transition: var(--transition); }
+    .portfolio__cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(232,121,43,0.45); }
+    .portfolio__slide-cta.hidden { visibility: hidden; }
     .portfolio__btn { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%); color: var(--white); border: none; cursor: pointer; font-size: 1.3rem; transition: var(--transition); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(232,121,43,0.3); }
     .portfolio__btn:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 12px 32px rgba(232,121,43,0.4); }
     .portfolio__btn:disabled { background: var(--gray-300); cursor: not-allowed; transform: scale(1); }
@@ -410,8 +422,18 @@
       <!-- AMWAYS SLIDER -->
       <div class="portfolio__slider-container reveal" id="amways-slider">
         <div class="portfolio__slider" id="amways-slides">
-          <div class="portfolio__slide"><img src="assets/images/am1.jpg" alt="Amways 1"></div>
-          <div class="portfolio__slide"><img src="assets/images/am2.jpg" alt="Amways 2"></div>
+          <div class="portfolio__slide portfolio__slide--link">
+            <a href="https://amway.co.th/articles/broccoli" target="_blank" rel="noopener noreferrer" class="portfolio__slide-link" aria-label="View Amways article: Broccoli">
+              <img src="assets/images/am1.jpg" alt="Amways 1">
+              <div class="portfolio__slide-overlay"><i class="fas fa-external-link-alt"></i><span>View Article</span></div>
+            </a>
+          </div>
+          <div class="portfolio__slide portfolio__slide--link">
+            <a href="https://amway.co.th/amway-resources/product-article/health" target="_blank" rel="noopener noreferrer" class="portfolio__slide-link" aria-label="View Amways product article: Health">
+              <img src="assets/images/am2.jpg" alt="Amways 2">
+              <div class="portfolio__slide-overlay"><i class="fas fa-external-link-alt"></i><span>View Article</span></div>
+            </a>
+          </div>
           <div class="portfolio__slide"><img src="assets/images/am3.jpg" alt="Amways 3"></div>
           <div class="portfolio__slide"><img src="assets/images/am4.jpg" alt="Amways 4"></div>
           <div class="portfolio__slide"><img src="assets/images/am5.jpg" alt="Amways 5"></div>
@@ -420,6 +442,11 @@
           <button class="portfolio__btn" id="amways-prev"><i class="fas fa-chevron-left"></i></button>
           <span class="portfolio__counter"><span id="amways-current">1</span> / 5</span>
           <button class="portfolio__btn" id="amways-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="portfolio__slide-cta" id="amways-cta">
+          <a id="amways-cta-link" href="" target="_blank" rel="noopener noreferrer" class="portfolio__cta-btn">
+            <i class="fas fa-external-link-alt"></i> View Article
+          </a>
         </div>
       </div>
 
@@ -699,12 +726,26 @@
     const sliderGroups = { amways: { slides: 5 }, rabbit: { slides: 6 }, rider: { slides: 3 } };
     const sliderState = { amways: 0, rabbit: 0, rider: 0 };
 
+    const amwayLinks = { 0: 'https://amway.co.th/articles/broccoli', 1: 'https://amway.co.th/amway-resources/product-article/health' };
+
+    function updateAmwaysCta(current) {
+      const cta = document.getElementById('amways-cta');
+      const ctaLink = document.getElementById('amways-cta-link');
+      if (amwayLinks[current]) {
+        ctaLink.href = amwayLinks[current];
+        cta.classList.remove('hidden');
+      } else {
+        cta.classList.add('hidden');
+      }
+    }
+
     function updateSlider(group) {
       const slider = document.getElementById(`${group}-slides`);
       const current = sliderState[group];
       const offset = -current * 100;
       slider.style.transform = `translateX(${offset}%)`;
       document.getElementById(`${group}-current`).textContent = current + 1;
+      if (group === 'amways') updateAmwaysCta(current);
     }
 
     function switchTab(tab) {
@@ -721,6 +762,8 @@
         switchTab(tab);
       });
     });
+
+    updateAmwaysCta(0);
 
     Object.keys(sliderGroups).forEach(group => {
       const totalSlides = sliderGroups[group].slides;
