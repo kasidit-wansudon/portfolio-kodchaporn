@@ -1,13 +1,53 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kodchaporn Chaiyaphan — UX/UI Designer Portfolio</title>
-  <meta name="description" content="Kodchaporn Chaiyaphan — Passionate UX/UI Designer creating seamless B2B2C digital experiences.">
+  <meta name="description" content="Kodchaporn Chaiyaphan — Passionate UX/UI Designer creating seamless B2B2C digital experiences. Specializing in fintech and insurance UI/UX design.">
+  <meta name="keywords" content="UX/UI Designer, Figma, Web Design, B2B2C, Fintech, Insurance, User Experience">
+  <meta name="author" content="Kodchaporn Chaiyaphan">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Kodchaporn Chaiyaphan — UX/UI Designer Portfolio">
+  <meta property="og:description" content="Passionate UX/UI Designer creating seamless digital experiences across fintech and insurance ecosystems.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kodchaporn.com">
+  <meta property="og:image" content="https://kodchaporn.com/assets/images/am1.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kodchaporn Chaiyaphan — UX/UI Designer">
+  <meta name="twitter:description" content="Creating seamless B2B2C digital experiences">
+  <meta name="twitter:image" content="https://kodchaporn.com/assets/images/am1.jpg">
+  <link rel="canonical" href="https://kodchaporn.com">
+  <link rel="icon" type="image/png" href="assets/icons/figma-color.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Kodchaporn Chaiyaphan",
+    "jobTitle": "UX/UI Designer",
+    "url": "https://kodchaporn.com",
+    "image": "https://kodchaporn.com/assets/images/am1.jpg",
+    "description": "Passionate UX/UI Designer creating seamless B2B2C digital experiences across fintech and insurance ecosystems",
+    "email": "kodchapond_ch@hotmail.com",
+    "telephone": "+66-95-385-7305",
+    "sameAs": [
+      "https://linkedin.com/in/kodchaporn"
+    ],
+    "knowsAbout": [
+      "UI Design",
+      "UX Research",
+      "Figma",
+      "User Testing",
+      "Design Systems",
+      "Wireframing",
+      "WCAG Accessibility"
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -141,13 +181,34 @@
     .timeline__desc li { position: relative; padding-left: 18px; margin-bottom: 6px; }
     .timeline__desc li::before { content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; border-radius: 50%; background: var(--orange-light); }
 
+    /* PORTFOLIO */
+    .portfolio { background: var(--white); }
+    .portfolio__tabs { display: flex; justify-content: center; gap: 12px; margin-bottom: 48px; flex-wrap: wrap; background: rgba(232,121,43,0.05); padding: 16px 24px; border-radius: 50px; width: fit-content; margin-left: auto; margin-right: auto; backdrop-filter: blur(10px); }
+    .portfolio__tab-btn { padding: 12px 28px; border: 2px solid transparent; background: var(--white); border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: var(--transition); color: var(--gray-700); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .portfolio__tab-btn.active { background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%); color: var(--white); border-color: var(--orange); box-shadow: 0 8px 24px rgba(232,121,43,0.3); }
+    .portfolio__tab-btn:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
+
+    .portfolio__slider-container { position: relative; overflow: hidden; background: linear-gradient(135deg, var(--gray-100) 0%, #F5F5F5 100%); border-radius: var(--radius-lg); padding: 60px 20px; min-height: 550px; display: flex; flex-direction: column; justify-content: center; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
+    .portfolio__slider { display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    .portfolio__slide { min-width: 100%; display: flex; justify-content: center; align-items: center; position: relative; }
+    .portfolio__slide img { max-width: 100%; max-height: 480px; border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); object-fit: cover; transition: var(--transition); }
+    .portfolio__slide:hover img { transform: scale(1.02); }
+
+    .portfolio__controls { display: flex; justify-content: center; align-items: center; gap: 32px; margin-top: 40px; }
+    .portfolio__btn { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%); color: var(--white); border: none; cursor: pointer; font-size: 1.3rem; transition: var(--transition); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(232,121,43,0.3); }
+    .portfolio__btn:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 12px 32px rgba(232,121,43,0.4); }
+    .portfolio__btn:disabled { background: var(--gray-300); cursor: not-allowed; transform: scale(1); }
+    .portfolio__counter { font-weight: 700; color: var(--dark); min-width: 80px; text-align: center; font-size: 1.1rem; }
+
     /* SERVICES */
     .services { background: var(--gray-100); }
     .services__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-    .service-card { background: var(--white); border-radius: var(--radius-lg); padding: 32px 24px; text-align: center; transition: var(--transition); box-shadow: var(--shadow-sm); border: 1px solid transparent; }
-    .service-card:hover { border-color: var(--orange); box-shadow: var(--shadow-lg); transform: translateY(-8px); }
-    .service-card:hover .service-card__icon { background: var(--orange); color: var(--white); }
-    .service-card__icon { width: 64px; height: 64px; border-radius: var(--radius-md); background: rgba(232,121,43,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 20px; transition: var(--transition); }
+    .service-card { background: var(--white); border-radius: var(--radius-lg); padding: 32px 24px; text-align: center; transition: var(--transition); box-shadow: var(--shadow-sm); border: 2px solid transparent; position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(232,121,43,0.05) 0%, rgba(232,121,43,0) 100%); opacity: 0; transition: var(--transition); pointer-events: none; }
+    .service-card:hover { border-color: var(--orange); box-shadow: 0 12px 40px rgba(232,121,43,0.25); transform: translateY(-12px); }
+    .service-card:hover::before { opacity: 1; }
+    .service-card:hover .service-card__icon { background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%); color: var(--white); transform: scale(1.15) rotate(-5deg); box-shadow: 0 8px 24px rgba(232,121,43,0.4); }
+    .service-card__icon { width: 64px; height: 64px; border-radius: var(--radius-md); background: rgba(229, 168, 125, 0.1); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 20px; transition: var(--transition); position: relative; z-index: 1; }
     .service-card__title { font-size: 1rem; font-weight: 600; color: var(--dark); margin-bottom: 10px; }
     .service-card__desc { font-size: 0.85rem; color: var(--gray-500); line-height: 1.6; }
 
@@ -194,15 +255,34 @@
     .footer span { color: var(--orange); }
 
     /* VERSION SWITCHER */
-    .version-switch { position: fixed; bottom: 28px; right: 28px; z-index: 999; display: flex; background: var(--white); border-radius: 50px; padding: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border: 1px solid var(--gray-300); }
-    .version-btn { width: 42px; height: 42px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; font-family: 'Poppins', sans-serif; transition: var(--transition); text-decoration: none; }
-    .version-btn--orange { background: #E8792B; color: #fff; border-color: var(--dark); transform: scale(1.1); box-shadow: 0 0 0 3px rgba(0,0,0,0.1); }
-    .version-btn--blue { background: #1D4ED8; color: #fff; }
-    .version-btn:hover { transform: scale(1.1); }
 
     /* ANIMATIONS */
     .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* ELITE UPGRADES */
+    .section__badge { background: linear-gradient(135deg, rgba(232,121,43,0.1) 0%, rgba(232,121,43,0.05) 100%); box-shadow: inset 0 1px 2px rgba(232,121,43,0.1); }
+
+    .skill-card__icon, .service-card__icon { display: flex; align-items: center; justify-content: center; font-size: 2rem; width: 64px; height: 64px; }
+    .skill-card__icon i, .service-card__icon i { color: var(--orange); transition: var(--transition); }
+    .skill-card:hover .skill-card__icon i { color: var(--white); }
+
+    .skill-card__tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-card__tag { background: var(--gray-100); border: 1px solid var(--gray-300); padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; color: var(--gray-700); transition: var(--transition); }
+    .skill-card:hover .skill-card__tag { border-color: var(--orange); background: rgba(232,121,43,0.05); }
+
+    .timeline__dot { animation: pulse 2s infinite; }
+
+    .contact__form input:focus, .contact__form textarea:focus { background: rgba(255,255,255,0.1); border-color: var(--orange); box-shadow: 0 0 0 3px rgba(232,121,43,0.1); }
+
+    .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 40px; padding-bottom: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+    /* NAV CLOSE BUTTON - Only show on mobile */
+    .nav__close { display: none; }
+    @media (max-width: 768px) {
+      .nav__close { display: block; }
+      .nav__links.open .nav__close { display: block; }
+    }
 
     /* RESPONSIVE */
     @media (max-width: 1024px) {
@@ -247,7 +327,8 @@
     <div class="container nav__inner">
       <a href="#" class="nav__logo">Kodchaporn<span>.</span></a>
       <div class="nav__links" id="navLinks">
-        <button  hidden class="nav__close" id="navClose">&times;</button>
+        <button class="nav__close" id="navClose">&times;</button>
+        <a href="#portfolio">Portfolio</a>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
@@ -293,19 +374,83 @@
       </div>
       <div class="hero__image">
         <div class="hero__photo-wrapper">
-          <div class="hero__photo">👩‍💻</div>
+          <div class="hero__photo"><img src="assets/images/am1.jpg" alt="Kodchaporn Chaiyaphan"></div>
           <div class="hero__float hero__float--1">
-            <div class="hero__float-icon">🎨</div>
+            <div class="hero__float-icon"><i class="fas fa-palette"></i></div>
             <div class="hero__float-text">UI Design</div>
           </div>
           <div class="hero__float hero__float--2">
-            <div class="hero__float-icon">🔍</div>
+            <div class="hero__float-icon"><i class="fas fa-magnifying-glass"></i></div>
             <div class="hero__float-text">UX Research</div>
           </div>
           <div class="hero__float hero__float--3">
-            <div class="hero__float-icon">📱</div>
+            <div class="hero__float-icon"><i class="fas fa-mobile-screen"></i></div>
             <div class="hero__float-text">Responsive</div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">Portfolio</div>
+        <h2 class="section__title">My Work</h2>
+        <p class="section__subtitle">Curated selection of my latest design projects and work.</p>
+      </div>
+
+      <div class="portfolio__tabs reveal">
+        <button class="portfolio__tab-btn active" data-tab="amways">Amways</button>
+        <button class="portfolio__tab-btn" data-tab="rabbit">Rabbit</button>
+        <button class="portfolio__tab-btn" data-tab="rider">Rider</button>
+      </div>
+
+      <!-- AMWAYS SLIDER -->
+      <div class="portfolio__slider-container reveal" id="amways-slider">
+        <div class="portfolio__slider" id="amways-slides">
+          <div class="portfolio__slide"><img src="assets/images/am1.jpg" alt="Amways 1"></div>
+          <div class="portfolio__slide"><img src="assets/images/am2.jpg" alt="Amways 2"></div>
+          <div class="portfolio__slide"><img src="assets/images/am3.jpg" alt="Amways 3"></div>
+          <div class="portfolio__slide"><img src="assets/images/am4.jpg" alt="Amways 4"></div>
+          <div class="portfolio__slide"><img src="assets/images/am5.jpg" alt="Amways 5"></div>
+        </div>
+        <div class="portfolio__controls">
+          <button class="portfolio__btn" id="amways-prev"><i class="fas fa-chevron-left"></i></button>
+          <span class="portfolio__counter"><span id="amways-current">1</span> / 5</span>
+          <button class="portfolio__btn" id="amways-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <!-- RABBIT SLIDER -->
+      <div class="portfolio__slider-container reveal" id="rabbit-slider" style="display: none;">
+        <div class="portfolio__slider" id="rabbit-slides">
+          <div class="portfolio__slide"><img src="assets/images/r1.jpg" alt="Rabbit 1"></div>
+          <div class="portfolio__slide"><img src="assets/images/r2.jpg" alt="Rabbit 2"></div>
+          <div class="portfolio__slide"><img src="assets/images/r3.jpg" alt="Rabbit 3"></div>
+          <div class="portfolio__slide"><img src="assets/images/r4.jpg" alt="Rabbit 4"></div>
+          <div class="portfolio__slide"><img src="assets/images/r5.jpg" alt="Rabbit 5"></div>
+          <div class="portfolio__slide"><img src="assets/images/r6.jpg" alt="Rabbit 6"></div>
+        </div>
+        <div class="portfolio__controls">
+          <button class="portfolio__btn" id="rabbit-prev"><i class="fas fa-chevron-left"></i></button>
+          <span class="portfolio__counter"><span id="rabbit-current">1</span> / 6</span>
+          <button class="portfolio__btn" id="rabbit-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <!-- RIDER SLIDER -->
+      <div class="portfolio__slider-container reveal" id="rider-slider" style="display: none;">
+        <div class="portfolio__slider" id="rider-slides">
+          <div class="portfolio__slide"><img src="assets/images/se1.jpg" alt="Rider 1"></div>
+          <div class="portfolio__slide"><img src="assets/images/se2.jpg" alt="Rider 2"></div>
+          <div class="portfolio__slide"><img src="assets/images/se3.jpg" alt="Rider 3"></div>
+        </div>
+        <div class="portfolio__controls">
+          <button class="portfolio__btn" id="rider-prev"><i class="fas fa-chevron-left"></i></button>
+          <span class="portfolio__counter"><span id="rider-current">1</span> / 3</span>
+          <button class="portfolio__btn" id="rider-next"><i class="fas fa-chevron-right"></i></button>
         </div>
       </div>
     </div>
@@ -323,7 +468,7 @@
           <video class="about__video" controls>
             <source src="assets/video/internship.mp4" type="video/mp4">
           </video>
-          <div class="about__video-label">🎬 My Internship Journey</div>
+          <div class="about__video-label"><i class="fas fa-clapperboard"></i> My Internship Journey</div>
         </div>
         <div class="about__content reveal">
           <p>I'm a passionate <strong>UX/UI Designer</strong> with a background in Software Engineering from Sisaket Rajabhat University. I specialize in creating seamless B2B2C digital experiences across fintech and insurance ecosystems.</p>
@@ -349,25 +494,25 @@
       </div>
       <div class="skills__grid">
         <div class="skill-card reveal">
-          <div class="skill-card__icon">🎨</div>
+          <div class="skill-card__icon"><i class="fas fa-palette"></i></div>
           <h3 class="skill-card__title">UI Design</h3>
           <p class="skill-card__desc">Creating beautiful, functional interfaces with attention to detail, component libraries, and design systems.</p>
           <div class="skill-card__tags"><span class="skill-card__tag">Figma</span><span class="skill-card__tag">Adobe XD</span><span class="skill-card__tag">Photoshop</span><span class="skill-card__tag">Illustrator</span></div>
         </div>
         <div class="skill-card reveal">
-          <div class="skill-card__icon">🔍</div>
+          <div class="skill-card__icon"><i class="fas fa-magnifying-glass"></i></div>
           <h3 class="skill-card__title">UX Methods</h3>
           <p class="skill-card__desc">User-centered design approach with journey mapping, wireframing, and usability testing methodologies.</p>
           <div class="skill-card__tags"><span class="skill-card__tag">Journey Mapping</span><span class="skill-card__tag">Wireframing</span><span class="skill-card__tag">Usability Testing</span><span class="skill-card__tag">WCAG</span></div>
         </div>
         <div class="skill-card reveal">
-          <div class="skill-card__icon">💻</div>
+          <div class="skill-card__icon"><i class="fas fa-code"></i></div>
           <h3 class="skill-card__title">Technical</h3>
           <p class="skill-card__desc">Bridging design and development with technical skills for responsive, production-ready layouts.</p>
           <div class="skill-card__tags"><span class="skill-card__tag">HTML/CSS</span><span class="skill-card__tag">ContentStack CMS</span><span class="skill-card__tag">Responsive</span><span class="skill-card__tag">Version Control</span></div>
         </div>
         <div class="skill-card reveal">
-          <div class="skill-card__icon">🤝</div>
+          <div class="skill-card__icon"><i class="fas fa-people-group"></i></div>
           <h3 class="skill-card__title">Collaboration</h3>
           <p class="skill-card__desc">Working effectively in agile teams with strong communication and cross-functional teamwork.</p>
           <div class="skill-card__tags"><span class="skill-card__tag">Agile Sprints</span><span class="skill-card__tag">Design Critiques</span><span class="skill-card__tag">Cross-functional</span><span class="skill-card__tag">Stakeholder Comm.</span></div>
@@ -451,28 +596,28 @@
         <p class="section__subtitle">End-to-end digital services combining UX/UI design, content, and visuals.</p>
       </div>
       <div class="services__grid">
-        <div class="service-card reveal"><div class="service-card__icon">🖥️</div><h3 class="service-card__title">UI/UX Design</h3><p class="service-card__desc">Clean, user-friendly interfaces tailored to your target users with design systems.</p></div>
-        <div class="service-card reveal"><div class="service-card__icon">📝</div><h3 class="service-card__title">Web Content</h3><p class="service-card__desc">Plan and create website content for consistency, engagement, and brand trust.</p></div>
-        <div class="service-card reveal"><div class="service-card__icon">✍️</div><h3 class="service-card__title">Writer</h3><p class="service-card__desc">Write clear, concise copy to communicate your message and engage audiences.</p></div>
-        <div class="service-card reveal"><div class="service-card__icon">🎨</div><h3 class="service-card__title">Graphic Design</h3><p class="service-card__desc">Create graphic and visual content to help brands communicate visually.</p></div>
+        <div class="service-card reveal"><div class="service-card__icon"><i class="fas fa-desktop"></i></div><h3 class="service-card__title">UI/UX Design</h3><p class="service-card__desc">Clean, user-friendly interfaces tailored to your target users with design systems.</p></div>
+        <div class="service-card reveal"><div class="service-card__icon"><i class="fas fa-file-lines"></i></div><h3 class="service-card__title">Web Content</h3><p class="service-card__desc">Plan and create website content for consistency, engagement, and brand trust.</p></div>
+        <div class="service-card reveal"><div class="service-card__icon"><i class="fas fa-pen-nib"></i></div><h3 class="service-card__title">Writer</h3><p class="service-card__desc">Write clear, concise copy to communicate your message and engage audiences.</p></div>
+        <div class="service-card reveal"><div class="service-card__icon"><i class="fas fa-swatchbook"></i></div><h3 class="service-card__title">Graphic Design</h3><p class="service-card__desc">Create graphic and visual content to help brands communicate visually.</p></div>
       </div>
     </div>
   </section>
 
   <!-- TOOLS -->
-  <section class="tools">
+  <section class="tools" id="tools">
     <div class="container">
       <div class="section__header section__header--center reveal">
         <div class="section__badge">Tools</div>
         <h2 class="section__title">Tools I Use</h2>
       </div>
       <div class="tools__grid reveal">
-        <div class="tool-item"><div class="tool-item__icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="#A259FF"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491z"/></svg></div><span class="tool-item__name">Figma</span></div>
-        <div class="tool-item"><div class="tool-item__icon" style="font-size:2rem;color:#31A8FF;font-weight:700;">Xd</div><span class="tool-item__name">Adobe XD</span></div>
-        <div class="tool-item"><div class="tool-item__icon" style="font-size:2rem;color:#31A8FF;font-weight:700;">Ps</div><span class="tool-item__name">Photoshop</span></div>
-        <div class="tool-item"><div class="tool-item__icon" style="font-size:2rem;color:#FF9A00;font-weight:700;">Ai</div><span class="tool-item__name">Illustrator</span></div>
-        <div class="tool-item"><div class="tool-item__icon" style="font-size:2rem;color:#00C4CC;font-weight:700;">C</div><span class="tool-item__name">Canva</span></div>
-        <div class="tool-item"><div class="tool-item__icon" style="font-size:1.4rem;font-weight:700;color:#E44D26;">&lt;/&gt;</div><span class="tool-item__name">HTML/CSS</span></div>
+        <div class="tool-item"><div class="tool-item__icon"><img src="assets/icons/figma-color.png" alt="Figma" style="width:36px;height:36px;"></div><span class="tool-item__name">Figma</span></div>
+        <div class="tool-item"><div class="tool-item__icon"><img src="assets/icons/adobe-xd-icon-free-png.webp" alt="Adobe XD" style="width:36px;height:36px; object-fit: contain;"></div><span class="tool-item__name">Adobe XD</span></div>
+        <div class="tool-item"><div class="tool-item__icon"><img src="assets/icons/Adobe_Photoshop_CC_icon.png" alt="Photoshop" style="width:36px;height:36px; object-fit: contain;"></div><span class="tool-item__name">Photoshop</span></div>
+        <div class="tool-item"><div class="tool-item__icon"><img src="assets/icons/adobe-illustrator-5977785_1280.webp" alt="Illustrator" style="width:36px;height:36px; object-fit: contain;"></div><span class="tool-item__name">Illustrator</span></div>
+        <div class="tool-item"><div class="tool-item__icon"><img src="assets/icons/canva-icon-logo-symbol-free-png.webp" alt="Canva" style="width:36px;height:36px; object-fit: contain;"></div><span class="tool-item__name">Canva</span></div>
+        <div class="tool-item"><div class="tool-item__icon" style="color:#E44D26;"><i class="fab fa-html5"></i></div><span class="tool-item__name">HTML/CSS</span></div>
       </div>
     </div>
   </section>
@@ -485,13 +630,13 @@
         <h2 class="section__title">Education & Certifications</h2>
       </div>
       <div class="education__card reveal">
-        <div class="education__icon">🎓</div>
+        <div class="education__icon"><i class="fas fa-graduation-cap"></i></div>
         <h3 class="education__degree">Bachelor of Software Engineering</h3>
         <p class="education__school">Sisaket Rajabhat University</p>
         <p class="education__year">2020 - 2024</p>
         <div class="education__certs">
-          <div class="education__cert"><span>🏅</span> Google UX Design Certificate</div>
-          <div class="education__cert"><span>🏅</span> UX/UI Design Professional Certificate</div>
+          <div class="education__cert"><i class="fas fa-medal"></i> Google UX Design Certificate</div>
+          <div class="education__cert"><i class="fas fa-medal"></i> UX/UI Design Professional Certificate</div>
         </div>
       </div>
     </div>
@@ -507,9 +652,9 @@
       </div>
       <div class="contact__grid">
         <div class="contact__info reveal">
-          <div class="contact__item"><div class="contact__item-icon">📧</div><div><div class="contact__item-label">Email</div><div class="contact__item-value">kodchapond_ch@hotmail.com</div></div></div>
-          <div class="contact__item"><div class="contact__item-icon">📱</div><div><div class="contact__item-label">Phone</div><div class="contact__item-value">095-385-7305</div></div></div>
-          <div class="contact__item"><div class="contact__item-icon">🌐</div><div><div class="contact__item-label">Portfolio</div><div class="contact__item-value">kodchapond_ch.</div></div></div>
+          <div class="contact__item"><div class="contact__item-icon"><i class="fas fa-envelope"></i></div><div><div class="contact__item-label">Email</div><div class="contact__item-value">kodchapond_ch@hotmail.com</div></div></div>
+          <div class="contact__item"><div class="contact__item-icon"><i class="fas fa-phone"></i></div><div><div class="contact__item-label">Phone</div><div class="contact__item-value">095-385-7305</div></div></div>
+          <div class="contact__item"><div class="contact__item-icon"><i class="fas fa-globe"></i></div><div><div class="contact__item-label">Portfolio</div><div class="contact__item-value">kodchaporn.design</div></div></div>
         </div>
         <form class="contact__form reveal" onsubmit="handleSubmit(event)">
           <input type="text" placeholder="Your Name" required>
@@ -532,11 +677,6 @@
     </div>
   </footer>
 
-  <!-- VERSION SWITCHER -->
-  <div class="version-switch">
-    <a href="v1.html" class="version-btn version-btn--orange" title="Version 1 (Orange)">V1</a>
-    <a href="index.html" class="version-btn version-btn--blue" title="Version 2 (Blue)">V2</a>
-  </div>
 
   <script>
     const nav = document.getElementById('nav');
@@ -552,7 +692,47 @@
     window.addEventListener('scroll', revealOnScroll);
     window.addEventListener('load', revealOnScroll);
     document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { e.preventDefault(); const t = document.querySelector(this.getAttribute('href')); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); });
-    function handleSubmit(e) { e.preventDefault(); const btn = e.target.querySelector('button[type="submit"]'); btn.innerHTML = '✅ Message Sent!'; btn.style.background = '#22C55E'; setTimeout(() => { btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message'; btn.style.background = ''; e.target.reset(); }, 2500); }
+    function handleSubmit(e) { e.preventDefault(); const btn = e.target.querySelector('button[type="submit"]'); btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!'; btn.style.background = '#22C55E'; setTimeout(() => { btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message'; btn.style.background = ''; e.target.reset(); }, 2500); }
+
+    // Portfolio Slider
+    const portfolioTabs = document.querySelectorAll('.portfolio__tab-btn');
+    const sliderGroups = { amways: { slides: 5 }, rabbit: { slides: 6 }, rider: { slides: 3 } };
+    const sliderState = { amways: 0, rabbit: 0, rider: 0 };
+
+    function updateSlider(group) {
+      const slider = document.getElementById(`${group}-slides`);
+      const current = sliderState[group];
+      const offset = -current * 100;
+      slider.style.transform = `translateX(${offset}%)`;
+      document.getElementById(`${group}-current`).textContent = current + 1;
+    }
+
+    function switchTab(tab) {
+      document.querySelectorAll('.portfolio__slider-container').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.portfolio__tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(`${tab}-slider`).style.display = 'block';
+      event.target.classList.add('active');
+    }
+
+    portfolioTabs.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const btn = e.target.closest('.portfolio__tab-btn');
+        const tab = btn.dataset.tab;
+        switchTab(tab);
+      });
+    });
+
+    Object.keys(sliderGroups).forEach(group => {
+      const totalSlides = sliderGroups[group].slides;
+      document.getElementById(`${group}-prev`).addEventListener('click', () => {
+        sliderState[group] = (sliderState[group] - 1 + totalSlides) % totalSlides;
+        updateSlider(group);
+      });
+      document.getElementById(`${group}-next`).addEventListener('click', () => {
+        sliderState[group] = (sliderState[group] + 1) % totalSlides;
+        updateSlider(group);
+      });
+    });
   </script>
 </body>
 </html>
