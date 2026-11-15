@@ -212,6 +212,51 @@
     .portfolio__btn:disabled { background: var(--gray-300); cursor: not-allowed; transform: scale(1); }
     .portfolio__counter { font-weight: 700; color: var(--dark); min-width: 80px; text-align: center; font-size: 1.1rem; }
 
+    /* PORTFOLIO — slide caption + full-size viewer (Jobfinfin) */
+    /* side padding sits on the slides instead of the container, so a wide neighbouring slide cannot peek in at the edges */
+    .portfolio__slider-container--wide { padding-left: 0; padding-right: 0; }
+    .portfolio__slider-container--wide .portfolio__slide { padding: 0 20px; }
+    .portfolio__zoom { cursor: zoom-in; }
+    .portfolio__caption { text-align: center; max-width: 680px; margin: 24px auto 0; padding: 0 20px; min-height: 104px; }
+    .portfolio__caption-project { font-size: 0.75rem; font-weight: 600; color: var(--gray-700); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .portfolio__caption-title { font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+    .portfolio__caption-desc { font-size: 0.9rem; color: var(--gray-700); line-height: 1.6; }
+    button.portfolio__cta-btn { border: none; cursor: pointer; font-family: inherit; }
+
+    .lightbox { position: fixed; inset: 0; z-index: 2000; background: rgba(15,15,26,0.96); display: flex; flex-direction: column; }
+    .lightbox[hidden] { display: none; }
+    .lightbox__top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 16px; color: var(--white); flex-shrink: 0; }
+    .lightbox__meta { display: flex; align-items: baseline; gap: 12px; min-width: 0; }
+    .lightbox__count { font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.75); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+    .lightbox__title { font-size: 1rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .lightbox__actions { display: flex; gap: 8px; flex-shrink: 0; }
+    .lightbox__btn, .lightbox__nav { width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255,255,255,0.14); color: var(--white); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s ease; }
+    .lightbox__btn:hover, .lightbox__nav:hover { background: var(--orange); }
+    .lightbox__btn:disabled { opacity: 0.35; cursor: default; background: rgba(255,255,255,0.14); }
+    .lightbox__btn:focus-visible, .lightbox__nav:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; box-shadow: 0 0 0 6px rgba(15,15,26,0.9); }
+    .lightbox__nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.55); z-index: 1; }
+    .lightbox__nav--prev { left: 16px; }
+    .lightbox__nav--next { right: 16px; }
+    .lightbox__stage { flex: 1; min-height: 0; overflow: auto; display: flex; padding: 0 72px 16px; overscroll-behavior: contain; }
+    .lightbox__img { display: block; flex: none; margin: auto; max-width: none; border-radius: var(--radius-sm); background: var(--white); cursor: zoom-in; user-select: none; -webkit-user-drag: none; }
+    .lightbox__stage.is-zoomed { padding: 0 16px 16px; }
+    .lightbox__stage.is-zoomed .lightbox__img { cursor: zoom-out; border-radius: 0; }
+    .lightbox__stage.is-dragging .lightbox__img { cursor: grabbing; }
+    @media (max-width: 768px) {
+      /* the tallest slide sets the slider height: keep portrait screenshots from leaving wide ones in a tall empty box */
+      .portfolio__slider-container--wide .portfolio__slide img { max-height: 300px; }
+      .portfolio__caption { min-height: 132px; }
+    }
+    /* reserve room for the longest caption so the page below does not jump when the slide changes */
+    @media (max-width: 429px) { .portfolio__caption { min-height: 148px; } }
+    @media (max-width: 359px) { .portfolio__caption { min-height: 172px; } }
+    @media (max-width: 768px) {
+      .lightbox__stage, .lightbox__stage.is-zoomed { padding: 0 8px 8px; }
+      .lightbox__nav { width: 40px; height: 40px; }
+      .lightbox__nav--prev { left: 8px; }
+      .lightbox__nav--next { right: 8px; }
+    }
+
     /* SERVICES */
     .services { background: var(--gray-100); }
     .services__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
@@ -414,13 +459,83 @@
       </div>
 
       <div class="portfolio__tabs reveal">
-        <button class="portfolio__tab-btn active" data-tab="amways">Amways</button>
+        <button class="portfolio__tab-btn active" data-tab="jobfinfin">Jobfinfin</button>
+        <button class="portfolio__tab-btn" data-tab="amways">Amways</button>
         <button class="portfolio__tab-btn" data-tab="rabbit">Rabbit</button>
         <button class="portfolio__tab-btn" data-tab="rider">Rider</button>
       </div>
 
+      <!-- JOBFINFIN SLIDER (images in file-number order, 1 → 8) -->
+      <div class="portfolio__slider-container portfolio__slider-container--wide reveal" id="jobfinfin-slider">
+        <div class="portfolio__slider" id="jobfinfin-slides">
+          <div class="portfolio__slide">
+            <a href="assets/images/jf1_full.webp" class="portfolio__slide-link portfolio__zoom" tabindex="-1" data-w="3808" data-h="1518" data-project="Jobfinfin – Employer Portal Redesign" data-title="User Flow" data-desc="Job-posting flow for employers, with the new step for setting candidate screening questions.">
+              <img src="assets/images/jf1.jpg" alt="Jobfinfin 1 – User flow for posting a job with screening questions">
+              <div class="portfolio__slide-overlay"><i class="fas fa-magnifying-glass-plus"></i><span>View Full Size</span></div>
+            </a>
+          </div>
+          <div class="portfolio__slide">
+            <a href="assets/images/jf2_full.webp" class="portfolio__slide-link portfolio__zoom" tabindex="-1" data-w="5049" data-h="2773" data-project="Jobfinfin – Employer Portal Redesign" data-title="Pre-screen" data-desc="Employers choose recommended screening questions and mark which answers qualify a candidate.">
+              <img src="assets/images/jf2.jpg" alt="Jobfinfin 2 – Pre-screen question settings for employers">
+              <div class="portfolio__slide-overlay"><i class="fas fa-magnifying-glass-plus"></i><span>View Full Size</span></div>
+            </a>
+          </div>
+          <div class="portfolio__slide">
+            <a href="assets/images/jf3_full.webp" class="portfolio__slide-link portfolio__zoom" tabindex="-1" data-w="3150" data-h="3536" data-project="Jobfinfin – Employer Portal Redesign" data-title="Quick Apply Page" data-desc="Candidates answer the employer's questions while a progress bar shows how many steps are done.">
+              <img src="assets/images/jf3.jpg" alt="Jobfinfin 3 – Quick apply page with screening questions">
+              <div class="portfolio__slide-overlay"><i class="fas fa-magnifying-glass-plus"></i><span>View Full Size</span></div>
+            </a>
+          </div>
+          <div class="portfolio__slide">
+            <a href="assets/images/jf4_full.webp" class="portfolio__slide-link portfolio__zoom" tabindex="-1" data-w="1392" data-h="3047" data-project="Jobfinfin – Employer Portal Redesign" data-title="General Apply Page" data-desc="The standard application form, with the same screening questions and a step indicator.">
+              <img src="assets/images/jf4.jpg" alt="Jobfinfin 4 – General apply page">
+              <div class="portfolio__slide-overlay"><i class="fas fa-magnifying-glass-plus"></i><span>View Full Size</span></div>
+            </a>
+          </div>
+          <div class="portfolio__slide">
+            <a href="assets/images/jf5_full.webp" class="portfolio__slide-link portfolio__zoom" tabindex="-1" data-w="4487" data-h="3120" data-project="Jobfinfin – Employer Portal Redesign" data-title="Job Post Details Page" data-desc="Applicants are marked as passing or not passing the criteria, with every answer shown in their profile.">
+              <img src="assets/images/jf5.jpg" alt="Jobfinfin 5 – Job post details page with applicant screening results">
+              <div class="portfolio__slide-overlay"><i class="fas fa-magnifying-glass-plus"></i><span>View Full Size</span></div>
+            </a>
+          </div>
+          <div class="portfolio__slide">
+            <a href="assets/images/jf6_full.webp" class="portfolio__slide-link portfolio__zoom" tabindex="-1" data-w="5120" data-h="2391" data-project="Jobfinfin – Employer Portal Redesign" data-title="Add Member" data-desc="Employers add team members to a job post so they can edit and manage it together.">
+              <img src="assets/images/jf6.jpg" alt="Jobfinfin 6 – Add Member setting on a job post">
+              <div class="portfolio__slide-overlay"><i class="fas fa-magnifying-glass-plus"></i><span>View Full Size</span></div>
+            </a>
+          </div>
+          <div class="portfolio__slide">
+            <a href="assets/images/jf7_full.webp" class="portfolio__slide-link portfolio__zoom" tabindex="-1" data-w="2219" data-h="1507" data-project="Jobfinfin – Management &amp; Sales Report Web" data-title="Customer Health" data-desc="Dashboard showing each client's usage, health status and assigned sales rep in one place.">
+              <img src="assets/images/jf7.jpg" alt="Jobfinfin 7 – Customer Health dashboard">
+              <div class="portfolio__slide-overlay"><i class="fas fa-magnifying-glass-plus"></i><span>View Full Size</span></div>
+            </a>
+          </div>
+          <div class="portfolio__slide">
+            <a href="assets/images/jf8_full.webp" class="portfolio__slide-link portfolio__zoom" tabindex="-1" data-w="5113" data-h="2738" data-project="Jobfinfin – Employer Portal Redesign" data-title="Tag" data-desc="A corner tag marks profiles the employer has already bought, in applicant lists and profile search.">
+              <img src="assets/images/jf8.jpg" alt="Jobfinfin 8 – Profile purchased tag on candidate cards">
+              <div class="portfolio__slide-overlay"><i class="fas fa-magnifying-glass-plus"></i><span>View Full Size</span></div>
+            </a>
+          </div>
+        </div>
+        <div class="portfolio__controls">
+          <button class="portfolio__btn" id="jobfinfin-prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+          <span class="portfolio__counter"><span id="jobfinfin-current">1</span> / 8</span>
+          <button class="portfolio__btn" id="jobfinfin-next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="portfolio__caption" aria-live="polite">
+          <p class="portfolio__caption-project" id="jobfinfin-caption-project">Jobfinfin – Employer Portal Redesign</p>
+          <h3 class="portfolio__caption-title" id="jobfinfin-caption-title">User Flow</h3>
+          <p class="portfolio__caption-desc" id="jobfinfin-caption-desc">Job-posting flow for employers, with the new step for setting candidate screening questions.</p>
+        </div>
+        <div class="portfolio__slide-cta">
+          <button type="button" class="portfolio__cta-btn" id="jobfinfin-zoom-btn">
+            <i class="fas fa-magnifying-glass-plus"></i> View Full Size
+          </button>
+        </div>
+      </div>
+
       <!-- AMWAYS SLIDER -->
-      <div class="portfolio__slider-container reveal" id="amways-slider">
+      <div class="portfolio__slider-container reveal" id="amways-slider" style="display: none;">
         <div class="portfolio__slider" id="amways-slides">
           <div class="portfolio__slide portfolio__slide--link">
             <a href="https://amway.co.th/articles/broccoli" target="_blank" rel="noopener noreferrer" class="portfolio__slide-link" aria-label="View Amways article: Broccoli">
@@ -557,6 +672,20 @@
         <p class="section__subtitle">My professional journey in UX/UI design across various industries.</p>
       </div>
       <div class="timeline">
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card">
+            <div class="timeline__date">Jun - Jul 2026</div>
+            <h3 class="timeline__role">UX/UI Designer (Contract)</h3>
+            <p class="timeline__company">Dplus Intertrade Co., Ltd.</p>
+            <ul class="timeline__desc">
+              <li>Redesigned the Jobfinfin Employer Portal based on UX/UI principles to simplify the hiring workflow and help companies select better-matched candidates.</li>
+              <li>Designed key features including Recommended Candidate Screening Questions and an Add Member system for seamless team and role management.</li>
+              <li>Created a new Jobfinfin Management &amp; Sales Report Web from scratch for Managers to track individual sales performance and client assignments.</li>
+              <li>Leveraged AI tools in the design workflow to accelerate UI delivery, achieving high client satisfaction within a 2-month contract.</li>
+            </ul>
+          </div>
+        </div>
         <div class="timeline__item reveal">
           <div class="timeline__dot"></div>
           <div class="timeline__card">
@@ -704,6 +833,22 @@
     </div>
   </footer>
 
+  <!-- FULL-SIZE IMAGE VIEWER (Jobfinfin slides) -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Full-size image viewer" hidden>
+    <div class="lightbox__top">
+      <div class="lightbox__meta" aria-live="polite" aria-atomic="true">
+        <span class="lightbox__count" id="lightboxCount"></span>
+        <span class="lightbox__title" id="lightboxTitle"></span>
+      </div>
+      <div class="lightbox__actions">
+        <button type="button" class="lightbox__btn" id="lightboxZoom" aria-label="Zoom in"><i class="fas fa-magnifying-glass-plus"></i></button>
+        <button type="button" class="lightbox__btn" id="lightboxClose" aria-label="Close"><i class="fas fa-xmark"></i></button>
+      </div>
+    </div>
+    <div class="lightbox__stage" id="lightboxStage"><img class="lightbox__img" id="lightboxImg" alt="" draggable="false"></div>
+    <button type="button" class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+    <button type="button" class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+  </div>
 
   <script>
     const nav = document.getElementById('nav');
@@ -723,8 +868,8 @@
 
     // Portfolio Slider
     const portfolioTabs = document.querySelectorAll('.portfolio__tab-btn');
-    const sliderGroups = { amways: { slides: 5 }, rabbit: { slides: 6 }, rider: { slides: 3 } };
-    const sliderState = { amways: 0, rabbit: 0, rider: 0 };
+    const sliderGroups = { jobfinfin: { slides: 8 }, amways: { slides: 5 }, rabbit: { slides: 6 }, rider: { slides: 3 } };
+    const sliderState = { jobfinfin: 0, amways: 0, rabbit: 0, rider: 0 };
 
     const amwayLinks = { 0: 'https://amway.co.th/articles/broccoli', 1: 'https://amway.co.th/amway-resources/product-article/health' };
 
@@ -746,12 +891,23 @@
       slider.style.transform = `translateX(${offset}%)`;
       document.getElementById(`${group}-current`).textContent = current + 1;
       if (group === 'amways') updateAmwaysCta(current);
+      if (group === 'jobfinfin') updateJobfinfinCaption(current);
+    }
+
+    // Jobfinfin: caption under the slider (text comes from the data-* attributes of each slide link)
+    const jfLinks = Array.from(document.querySelectorAll('#jobfinfin-slides .portfolio__zoom'));
+    function updateJobfinfinCaption(current) {
+      const d = jfLinks[current].dataset;
+      document.getElementById('jobfinfin-caption-project').textContent = d.project;
+      document.getElementById('jobfinfin-caption-title').textContent = d.title;
+      document.getElementById('jobfinfin-caption-desc').textContent = d.desc;
     }
 
     function switchTab(tab) {
       document.querySelectorAll('.portfolio__slider-container').forEach(el => el.style.display = 'none');
       document.querySelectorAll('.portfolio__tab-btn').forEach(el => el.classList.remove('active'));
-      document.getElementById(`${tab}-slider`).style.display = 'block';
+      // Amways and Jobfinfin keep the stylesheet's centred flex layout they have on first load
+      document.getElementById(`${tab}-slider`).style.display = (tab === 'amways' || tab === 'jobfinfin') ? 'flex' : 'block';
       event.target.classList.add('active');
     }
 
@@ -776,6 +932,161 @@
         updateSlider(group);
       });
     });
+
+    // Full-size image viewer for the Jobfinfin slides: click a slide (or "View Full Size") to open,
+    // click the image to zoom to actual size, drag or scroll to pan, arrows / swipe to change image, Esc to close.
+    const lightbox = document.getElementById('lightbox');
+    const lightboxStage = document.getElementById('lightboxStage');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxZoomBtn = document.getElementById('lightboxZoom');
+    const jfZoomBtn = document.getElementById('jobfinfin-zoom-btn');
+    let lightboxIndex = 0;
+    let lightboxDrag = null;
+    let lightboxDragged = false;
+    let lightboxTouchX = null, lightboxTouchY = 0;
+    let lightboxOpenedAt = 0;
+
+    const lightboxIsZoomed = () => lightboxStage.classList.contains('is-zoomed');
+
+    // Size the image from the known full-size dimensions, so it does not jump when the full file replaces the preview.
+    function layoutLightbox() {
+      const d = jfLinks[lightboxIndex].dataset;
+      const fullW = Number(d.w), fullH = Number(d.h);
+      const cs = getComputedStyle(lightboxStage);
+      // offset* (not client*): ignores scrollbars still present from the zoomed state, so the fit is not computed too small
+      const availW = lightboxStage.offsetWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      const availH = lightboxStage.offsetHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+      const fit = Math.min(availW / fullW, availH / fullH, 1);
+      const scale = lightboxIsZoomed() ? 1 : fit;
+      lightboxImg.style.width = Math.max(1, Math.floor(fullW * scale)) + 'px';
+      lightboxImg.style.height = Math.max(1, Math.floor(fullH * scale)) + 'px';
+      lightboxZoomBtn.disabled = fit >= 1 && !lightboxIsZoomed();
+    }
+
+    // rx / ry: point of the image (0–1) to keep in the middle of the screen when zooming in.
+    function setLightboxZoom(on, rx = 0.5, ry = 0.5) {
+      lightboxStage.classList.toggle('is-zoomed', on);
+      lightboxZoomBtn.setAttribute('aria-label', on ? 'Zoom out' : 'Zoom in');
+      lightboxZoomBtn.innerHTML = on ? '<i class="fas fa-magnifying-glass-minus"></i>' : '<i class="fas fa-magnifying-glass-plus"></i>';
+      layoutLightbox();
+      if (on) {
+        lightboxStage.scrollLeft = lightboxImg.offsetWidth * rx - lightboxStage.clientWidth / 2;
+        lightboxStage.scrollTop = lightboxImg.offsetHeight * ry - lightboxStage.clientHeight / 2;
+      }
+    }
+
+    function showLightboxImage(index) {
+      lightboxIndex = (index + jfLinks.length) % jfLinks.length;
+      const shown = lightboxIndex;
+      const link = jfLinks[shown];
+      const preview = link.querySelector('img');
+      setLightboxZoom(false);
+      lightboxImg.src = preview.currentSrc || preview.src;   // already loaded: show it at once
+      lightboxImg.alt = preview.alt;
+      const full = new Image();
+      full.onload = () => { if (!lightbox.hidden && lightboxIndex === shown) lightboxImg.src = full.src; };
+      full.src = link.href;
+      document.getElementById('lightboxCount').textContent = (shown + 1) + ' / ' + jfLinks.length;
+      document.getElementById('lightboxTitle').textContent = link.dataset.title;
+      sliderState.jobfinfin = shown;   // keep the slider behind on the same image
+      updateSlider('jobfinfin');
+    }
+
+    function openLightbox(index) {
+      lightbox.hidden = false;
+      lightboxOpenedAt = performance.now();
+      document.body.style.overflow = 'hidden';
+      showLightboxImage(index);
+      document.getElementById('lightboxClose').focus();
+    }
+
+    function closeLightbox() {
+      lightbox.hidden = true;
+      document.body.style.overflow = '';
+      lightboxImg.removeAttribute('src');
+      jfZoomBtn.focus({ preventScroll: true });
+    }
+
+    jfLinks.forEach((link, index) => {
+      link.addEventListener('click', (e) => {
+        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;   // let "open in new tab" work
+        e.preventDefault();
+        openLightbox(index);
+      });
+    });
+    jfZoomBtn.addEventListener('click', () => openLightbox(sliderState.jobfinfin));
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxPrev').addEventListener('click', () => showLightboxImage(lightboxIndex - 1));
+    document.getElementById('lightboxNext').addEventListener('click', () => showLightboxImage(lightboxIndex + 1));
+    lightboxZoomBtn.addEventListener('click', () => setLightboxZoom(!lightboxIsZoomed()));
+
+    lightboxStage.addEventListener('click', (e) => {
+      // the click that ends a drag, or the second click of the double-click / double-tap that opened the viewer
+      if (lightboxDragged || performance.now() - lightboxOpenedAt < 400) return;
+      if (e.target !== lightboxImg) { closeLightbox(); return; }
+      if (lightboxZoomBtn.disabled) return;
+      const r = lightboxImg.getBoundingClientRect();
+      setLightboxZoom(!lightboxIsZoomed(), (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
+    });
+
+    // Mouse: drag to pan while zoomed (touch screens pan natively).
+    lightboxStage.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse' || e.button !== 0 || !lightboxIsZoomed()) return;
+      lightboxDrag = { x: e.clientX, y: e.clientY, left: lightboxStage.scrollLeft, top: lightboxStage.scrollTop, moved: false };
+    });
+    window.addEventListener('pointermove', (e) => {
+      if (!lightboxDrag) return;
+      const dx = e.clientX - lightboxDrag.x, dy = e.clientY - lightboxDrag.y;
+      if (!lightboxDrag.moved && Math.abs(dx) + Math.abs(dy) > 4) { lightboxDrag.moved = true; lightboxStage.classList.add('is-dragging'); }
+      if (lightboxDrag.moved) { lightboxStage.scrollLeft = lightboxDrag.left - dx; lightboxStage.scrollTop = lightboxDrag.top - dy; }
+    });
+    const endLightboxDrag = () => {
+      if (!lightboxDrag) return;
+      lightboxDragged = lightboxDrag.moved;
+      lightboxDrag = null;
+      lightboxStage.classList.remove('is-dragging');
+      setTimeout(() => { lightboxDragged = false; }, 0);   // after the click event that follows
+    };
+    window.addEventListener('pointerup', endLightboxDrag);
+    window.addEventListener('pointercancel', endLightboxDrag);
+
+    // Touch: swipe left / right to change image (only when not zoomed).
+    lightboxStage.addEventListener('touchstart', (e) => {
+      lightboxTouchX = e.touches.length === 1 && !lightboxIsZoomed() ? e.touches[0].clientX : null;
+      lightboxTouchY = e.touches[0].clientY;
+    }, { passive: true });
+    lightboxStage.addEventListener('touchend', (e) => {
+      if (lightboxTouchX === null) return;
+      const dx = e.changedTouches[0].clientX - lightboxTouchX;
+      const dy = e.changedTouches[0].clientY - lightboxTouchY;
+      lightboxTouchX = null;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) showLightboxImage(lightboxIndex + (dx < 0 ? 1 : -1));   // mostly horizontal only
+    }, { passive: true });
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.hidden) return;
+      if (e.key === 'Escape') { closeLightbox(); return; }
+      if (e.altKey || e.ctrlKey || e.metaKey) return;   // leave browser shortcuts (Alt/Cmd + arrow = Back/Forward) alone
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        const dir = e.key === 'ArrowRight' ? 1 : -1;
+        if (lightboxIsZoomed()) lightboxStage.scrollBy({ left: dir * 160 }); else showLightboxImage(lightboxIndex + dir);
+        e.preventDefault();
+        return;
+      }
+      if ((e.key === 'ArrowUp' || e.key === 'ArrowDown') && lightboxIsZoomed()) {
+        lightboxStage.scrollBy({ top: (e.key === 'ArrowDown' ? 1 : -1) * 160 });
+        e.preventDefault();
+        return;
+      }
+      if (e.key === 'Tab') {   // keep keyboard focus inside the viewer
+        const items = Array.from(lightbox.querySelectorAll('button:not(:disabled)'));
+        const first = items[0], last = items[items.length - 1];
+        if (!lightbox.contains(document.activeElement)) { first.focus(); e.preventDefault(); }
+        else if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
+        else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
+      }
+    });
+    window.addEventListener('resize', () => { if (!lightbox.hidden) layoutLightbox(); });
   </script>
 </body>
 </html>
